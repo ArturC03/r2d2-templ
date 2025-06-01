@@ -1,32 +1,38 @@
 package pages
 
 import (
-	"github.com/axzilla/templui-quickstart/ui/components/button"
-	"github.com/axzilla/templui-quickstart/ui/layouts"
+	"github.com/ArturC03/r2d2-templ/ui/components/button"
+	"github.com/ArturC03/r2d2-templ/ui/layouts"
 )
 
 templ Landing() {
 	@layouts.BaseLayout() {
-		<div class="flex justify-center items-center min-h-screen">
+		<main class="flex justify-center items-center">
 			<div class="flex flex-col gap-6 items-center justify-center px-4 w-full max-w-3xl py-16">
 				<div class="text-center space-y-4">
-					<h1 class="text-4xl font-bold">🚀 Welcome to templUI Quickstart</h1>
+					<div class="h-full">
+						<img src="/assets/images/rexDino.svg" class="w-64 h-64 mx-auto block"/> <!-- AUMENTADO -->
+					</div>
+					<div class="flex items-center justify-center">
+						<h1 class="text-2xl md:text-4xl font-bold">🚀 Welcome to&nbsp;</h1>
+						<img src="/assets/images/r2d2-light.svg" class="dark:hidden w-24"/> <!-- Corrigido fechamento -->
+						<img src="/assets/images/r2d2-dark.svg" class="hidden dark:block w-24"/> <!-- Corrigido fechamento -->
+					</div>
 					<p class="text-muted-foreground text-lg">
-						Your project is ready! ✨ Check out the documentation for guides and examples, 
-						or visit GitHub to stay up to date. Let's build something great! 🎨
+						✨ Check out the documentation for guides and examples,
+						or visit GitHub to stay up to date.
 					</p>
 				</div>
 				<div class="flex gap-3">
 					@button.Button(button.Props{
 						Variant: "default",
-						Href:    "https://templui.io",
-						Target:  "_blank",
+						Href:    "/docs",
 					}) {
 						Documentation
 					}
 					@button.Button(button.Props{
 						Variant: "outline",
-						Href:    "https://github.com/axzilla/templui",
+						Href:    "https://github.com/ArturC03/r2d2",
 						Target:  "_blank",
 					}) {
 						GitHub
@@ -36,6 +42,6 @@ templ Landing() {
 					Questions? Join our <a href="https://github.com/axzilla/templui/discussions" target="_blank" class="text-primary hover:underline">community discussions</a> 👋
 				</p>
 			</div>
-		</div>
+		</main>
 	}
 }

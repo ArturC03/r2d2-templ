@@ -1,0 +1,96 @@
+package modules
+
+import "github.com/ArturC03/r2d2-templ/ui/components/code"
+import "github.com/ArturC03/r2d2-templ/ui/components/tabs"
+
+templ Installation() {
+	<h1 id="installation" class="font-bold text-2xl">Installation</h1>
+	<p class="mt-2">
+		To install <strong>r2d2</strong>, run the following command in your terminal:
+	</p>
+	<br/>
+	@InstallationTabs()
+	<br/>
+	<p>After running on of the commands above, the r2d2 binary should be available in your <strong>$PATH.</strong></p>
+	<p>You can <strong>verify the installation</strong> by running the following command:</p>
+	<br/>
+	@code.Code(code.Props{
+		Language:       "bash",
+		ShowCopyButton: true,
+	}) {
+		{ `r2d2 version` }
+	}
+}
+
+templ InstallationTabs() {
+	<div class="w-full">
+		@tabs.Tabs(tabs.Props{
+			ID: "installation-tabs",
+		}) {
+			@tabs.List(tabs.ListProps{
+				Class: "w-full ",
+			}) {
+				@tabs.Trigger(tabs.TriggerProps{
+					Value: "linux",
+				}) {
+					<i class="fa-brands fa-linux"></i> &nbsp;Linux
+				}
+				@tabs.Trigger(tabs.TriggerProps{
+					Value: "macos",
+				}) {
+					<i class="fa-brands fa-apple"></i> &nbsp;macOS
+				}
+				@tabs.Trigger(tabs.TriggerProps{
+					Value: "windows",
+				}) {
+					<i class="fa-brands fa-windows"></i> &nbsp;Windows
+				}
+			}
+			<div class="w-full mt-2">
+				@tabs.Content(tabs.ContentProps{
+					Value:    "linux",
+					IsActive: true,
+				}) {
+					@LinuxTab()
+				}
+				@tabs.Content(tabs.ContentProps{
+					Value: "macos",
+				}) {
+					@MacOSTab()
+				}
+				@tabs.Content(tabs.ContentProps{
+					Value: "windows",
+				}) {
+					@WindowsTab()
+				}
+			</div>
+		}
+	</div>
+}
+
+templ LinuxTab() {
+	@code.Code(code.Props{
+		Language:       "bash",
+		ShowCopyButton: true,
+	}) {
+		{ `curl -sSL https://raw.githubusercontent.com/ArturC03/r2d2-cli/main/install.sh | bash` }
+	}
+}
+
+templ MacOSTab() {
+	@code.Code(code.Props{
+		Language:       "bash",
+		ShowCopyButton: true,
+	}) {
+		{ `curl -sSL https://raw.githubusercontent.com/ArturC03/r2d2-cli/main/install.sh | bash` }
+	}
+}
+
+templ WindowsTab() {
+	@code.Code(code.Props{
+		Language:       "bash",
+		ShowCopyButton: true,
+	}) {
+		{ `Use WSL bro` }
+	}
+}

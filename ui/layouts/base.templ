@@ -1,8 +1,6 @@
 package layouts
 
-import (
-	"github.com/axzilla/templui-quickstart/ui/modules"
-)
+import "github.com/ArturC03/r2d2-templ/ui/modules"
 
 templ ThemeSwitcherScript() {
 	{{ handle := templ.NewOnceHandle() }}
@@ -38,12 +36,20 @@ templ BaseLayout() {
 			<link href="/assets/css/output.css" rel="stylesheet"/>
 			<!-- Alpine.js -->
 			<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+			<link rel="icon" type="image/x-icon" href="/assets/images/icon-dark.svg"/>
 			<!-- Theme switcher script -->
 			@ThemeSwitcherScript()
+			<script defer src="/assets/js/code.min.js"></script>
+			<script defer src="/assets/js/tabs.min.js"></script>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
+			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet"/>
 		</head>
 		<body
 			x-data="themeHandler"
 			x-bind:class="themeClasses"
+			class=""
 		>
 			@modules.Navbar()
 			{ children... }

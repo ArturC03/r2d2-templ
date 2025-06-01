@@ -1,0 +1,72 @@
+package pages
+
+import (
+	"github.com/ArturC03/r2d2-templ/ui/components/button"
+	"github.com/ArturC03/r2d2-templ/ui/components/separator"
+	"github.com/ArturC03/r2d2-templ/ui/layouts"
+	"github.com/ArturC03/r2d2-templ/ui/modules"
+	"github.com/CleanMachine1/capitalise"
+	"strings"
+)
+
+type Section struct {
+	Title string
+	View  templ.Component
+}
+
+var sections = []Section{
+	{"introduction", modules.Introduction()},
+	{"installation", modules.Installation()},
+	{"hello-world", modules.HelloWorld()},
+}
+
+templ Docs() {
+	@layouts.BaseLayout() {
+		<div class="flex flex-col md:flex-row min-h-screen">
+			<!-- Menu lateral em telas médias e maiores -->
+			<aside class="fixed hidden md:block md:w-64 p-4 pt-20">
+				<div class="items-start flex flex-col">
+					<h2 class="font-bold mb-2">Getting Started</h2>
+					for _, section := range sections {
+						@SectionNavLink(section.Title)
+					}
+				</div>
+			</aside>
+			<!-- Menu superior em telas pequenas -->
+			<nav class="md:hidden p-4 pt-20">
+				for _, section := range sections {
+					@SectionNavLink(section.Title)
+				}
+			</nav>
+			<!-- Conteúdo principal -->
+			<main
+				class="w-full md:w-2/3 p-4 pt-20 mx-auto"
+			>
+				<div>
+					for _, section := range sections {
+						@section.View
+						@SeparateSection()
+					}
+				</div>
+			</main>
+		</div>
+	}
+}
+
+templ SeparateSection() {
+	@separator.Separator(separator.Props{
+		Orientation: separator.OrientationHorizontal,
+		Class:       "mt-4",
+	})
+	<br/>
+}
+
+templ SectionNavLink(title string) {
+	@button.Button(button.Props{
+		Variant: button.VariantLink,
+		Href:    "#" + title,
+		Class:   "text-lg",
+	}) {
+		{ strings.Replace(capitalise.First(title),"-"," ",-1) }
+	}
+}

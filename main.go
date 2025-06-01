@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/ArturC03/r2d2-templ/assets"
+	"github.com/ArturC03/r2d2-templ/ui/pages"
 	"github.com/a-h/templ"
-	"github.com/axzilla/templui-quickstart/assets"
-	"github.com/axzilla/templui-quickstart/ui/pages"
 	"github.com/joho/godotenv"
 )
 
@@ -16,6 +16,7 @@ func main() {
 	mux := http.NewServeMux()
 	SetupAssetsRoutes(mux)
 	mux.Handle("GET /", templ.Handler(pages.Landing()))
+	mux.Handle("GET /docs", templ.Handler(pages.Docs()))
 	fmt.Println("Server is running on http://localhost:8090")
 	http.ListenAndServe(":8090", mux)
 }

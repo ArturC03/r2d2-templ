@@ -1,3 +1,5 @@
+github.com/CleanMachine1/capitalise v0.0.0-20211202000658-6c2a2efcfe9e h1:jvnLD/1DRcpu5Kdnz5pZ5q+D96f3iMhIFV2i9dZjTi4=
+github.com/CleanMachine1/capitalise v0.0.0-20211202000658-6c2a2efcfe9e/go.mod h1:Jn9bIxF/Dw7fjkzz2JZDwEWuGH1ZaoStGg4okL7KjYg=
 github.com/Oudwins/tailwind-merge-go v0.2.0 h1:rtVHgYmLwwae4P+K6//ceRuUdyz3Bny6fo4664fOEmo=
 github.com/Oudwins/tailwind-merge-go v0.2.0/go.mod h1:kkZodgOPvZQ8f7SIrlWkG/w1g9JTbtnptnePIh3V72U=
 github.com/a-h/templ v0.3.865 h1:nYn5EWm9EiXaDgWcMQaKiKvrydqgxDUtT1+4zU2C43A=
