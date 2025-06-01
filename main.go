@@ -37,11 +37,11 @@ func SetupAssetsRoutes(mux *http.ServeMux) {
 		}
 
 		var fs http.Handler
-		if isDevelopment {
-			fs = http.FileServer(http.Dir("./assets"))
-		} else {
-			fs = http.FileServer(http.FS(assets.Assets))
-		}
+		// if isDevelopment {
+		fs = http.FileServer(http.Dir("./assets"))
+		// } else {
+		// 	fs = http.FileServer(http.FS(assets.Assets))
+		// }
 
 		fs.ServeHTTP(w, r)
 	})
