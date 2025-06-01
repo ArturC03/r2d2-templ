@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ArturC03/r2d2-templ/assets"
+	_ "github.com/ArturC03/r2d2-templ/assets"
 	"github.com/ArturC03/r2d2-templ/ui/pages"
 	"github.com/a-h/templ"
 	"github.com/joho/godotenv"
