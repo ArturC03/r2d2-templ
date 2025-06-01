@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	_ "github.com/ArturC03/r2d2-templ/assets"
+	"github.com/ArturC03/r2d2-templ/assets"
 	"github.com/ArturC03/r2d2-templ/ui/pages"
 	"github.com/a-h/templ"
 	"github.com/joho/godotenv"
@@ -37,11 +37,11 @@ func SetupAssetsRoutes(mux *http.ServeMux) {
 		}
 
 		var fs http.Handler
-		// if isDevelopment {
-		fs = http.FileServer(http.Dir("./assets"))
-		// } else {
-		// 	fs = http.FileServer(http.FS(assets.Assets))
-		// }
+		if isDevelopment {
+			fs = http.FileServer(http.Dir("./assets"))
+		} else {
+			fs = http.FileServer(http.FS(assets.Assets))
+		}
 
 		fs.ServeHTTP(w, r)
 	})
