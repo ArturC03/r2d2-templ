@@ -53,7 +53,8 @@
     --ring: hsl(262.1 83.3% 57.8%);
     --radius: 0.75rem;
     --font-inter: "Inter", sans-serif;
-    --font-sans: "Comic Relief", system-ui;
+    --font-sans: "Inter", sans-serif;
+    --font-comic: "Comic Relief", system-ui;
 }
 .dark {
     --background: hsl(224 71.4% 4.1%);
@@ -102,8 +103,21 @@
         font-style: normal;
     }
 
+    body {
+        @apply min-h-screen dark:bg-[url('/assets/images/background-dark.svg')] bg-[url('/assets/images/background-light.svg')]  bg-repeat bg-fixed bg-[length:600px] md:bg-[length:800px];
+    }
+
     main {
-        @apply min-h-screen dark:bg-[url('/assets/images/background-dark.svg')] bg-[url('/assets/images/background-light.svg')]  bg-repeat bg-fixed bg-[length:600px] md:bg-[length:800px] border;
+        @apply min-h-screen dark:bg-[url('/assets/images/background-dark.svg')] bg-[url('/assets/images/background-light.svg')]  bg-repeat bg-fixed bg-[length:600px] md:bg-[length:800px];
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-comic);
     }
 
     code {

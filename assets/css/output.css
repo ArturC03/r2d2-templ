@@ -922,7 +922,8 @@
   --ring: hsl(262.1 83.3% 57.8%);
   --radius: 0.75rem;
   --font-inter: "Inter", sans-serif;
-  --font-sans: "Comic Relief", system-ui;
+  --font-sans: "Inter", sans-serif;
+  --font-comic: "Comic Relief", system-ui;
 }
 .dark {
   --background: hsl(224 71.4% 4.1%);
@@ -966,10 +967,8 @@
     font-weight: 400;
     font-style: normal;
   }
-  main {
+  body {
     min-height: 100vh;
-    border-style: var(--tw-border-style);
-    border-width: 1px;
     background-image: url('/assets/images/background-light.svg');
     background-size: 600px;
     background-attachment: fixed;
@@ -980,6 +979,22 @@
     &:where(.dark, .dark *) {
       background-image: url('/assets/images/background-dark.svg');
     }
+  }
+  main {
+    min-height: 100vh;
+    background-image: url('/assets/images/background-light.svg');
+    background-size: 600px;
+    background-attachment: fixed;
+    background-repeat: repeat;
+    @media (width >= 48rem) {
+      background-size: 800px;
+    }
+    &:where(.dark, .dark *) {
+      background-image: url('/assets/images/background-dark.svg');
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-comic);
   }
   code {
     border-radius: 0.25rem;
