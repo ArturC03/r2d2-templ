@@ -47,7 +47,9 @@ templ Docs() {
 			// 		@SectionNavLink(section.Title)
 			// 	}
 			// </nav>
-			@drawer.Drawer() {
+			@drawer.Drawer(drawer.Props{
+				Class: "md:hidden",
+			}) {
 				@drawer.Trigger() {
 					@button.Button(button.Props{
 						Variant: button.VariantOutline,
