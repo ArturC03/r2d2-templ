@@ -15,6 +15,7 @@
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
+    --container-2xl: 1400px;
     --container-3xl: 48rem;
     --text-xs: 0.75rem;
     --text-xs--line-height: calc(1 / 0.75);
@@ -34,6 +35,9 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --tracking-tight: -0.025em;
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
     --ease-in: cubic-bezier(0.4, 0, 1, 1);
     --ease-out: cubic-bezier(0, 0, 0.2, 1);
     --blur-xs: 4px;
@@ -42,6 +46,25 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(---accent-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-ring: var(--ring);
   }
 }
 @layer base {
@@ -190,6 +213,9 @@
   }
 }
 @layer utilities {
+  .collapse {
+    visibility: collapse;
+  }
   .invisible {
     visibility: hidden;
   }
@@ -349,6 +375,9 @@
   .min-h-screen {
     min-height: 100vh;
   }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
+  }
   .w-1\/2 {
     width: calc(1/2 * 100%);
   }
@@ -358,14 +387,23 @@
   .w-1\/4 {
     width: calc(1/4 * 100%);
   }
+  .w-2 {
+    width: calc(var(--spacing) * 2);
+  }
   .w-2\/3 {
     width: calc(2/3 * 100%);
+  }
+  .w-3 {
+    width: calc(var(--spacing) * 3);
   }
   .w-3\/4 {
     width: calc(3/4 * 100%);
   }
   .w-5 {
     width: calc(var(--spacing) * 5);
+  }
+  .w-9 {
+    width: calc(var(--spacing) * 9);
   }
   .w-10 {
     width: calc(var(--spacing) * 10);
@@ -499,6 +537,13 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
+  .space-y-1 {
+    :where(& > :not(:last-child)) {
+      --tw-space-y-reverse: 0;
+      margin-block-start: calc(calc(var(--spacing) * 1) * var(--tw-space-y-reverse));
+      margin-block-end: calc(calc(var(--spacing) * 1) * calc(1 - var(--tw-space-y-reverse)));
+    }
+  }
   .space-y-1\.5 {
     :where(& > :not(:last-child)) {
       --tw-space-y-reverse: 0;
@@ -622,8 +667,20 @@
   .bg-white {
     background-color: var(--color-white);
   }
+  .bg-\[url\(\&\#39\;\/assets\/images\/r2d2-light\.svg\&\#39\;\)\] {
+    background-image: url(&#39;/assets/images/r2d2-light.svg&#39;);
+  }
+  .bg-\[url\(\'\/assets\/images\/background-light\.svg\'\)\] {
+    background-image: url('/assets/images/background-light.svg');
+  }
   .bg-\[url\(\'\/assets\/images\/r2d2-light\.svg\'\)\] {
     background-image: url('/assets/images/r2d2-light.svg');
+  }
+  .bg-\[length\:600px\] {
+    background-size: 600px;
+  }
+  .bg-fixed {
+    background-attachment: fixed;
   }
   .bg-\[80\%\] {
     background-position: 80%;
@@ -634,11 +691,17 @@
   .bg-no-repeat {
     background-repeat: no-repeat;
   }
+  .bg-repeat {
+    background-repeat: repeat;
+  }
   .mask-repeat {
     mask-repeat: repeat;
   }
   .object-cover {
     object-fit: cover;
+  }
+  .p-0\.5 {
+    padding: calc(var(--spacing) * 0.5);
   }
   .p-1 {
     padding: calc(var(--spacing) * 1);
@@ -695,6 +758,10 @@
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+  }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
@@ -702,6 +769,10 @@
   .text-sm {
     font-size: var(--text-sm);
     line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xl {
+    font-size: var(--text-xl);
+    line-height: var(--tw-leading, var(--text-xl--line-height));
   }
   .text-xs {
     font-size: var(--text-xs);
@@ -1033,6 +1104,16 @@
   .dark\:bg-black {
     &:where(.dark, .dark *) {
       background-color: var(--color-black);
+    }
+  }
+  .dark\:bg-\[url\(\&\#39\;\/assets\/images\/r2d2-dark\.svg\&\#39\;\)\] {
+    &:where(.dark, .dark *) {
+      background-image: url(&#39;/assets/images/r2d2-dark.svg&#39;);
+    }
+  }
+  .dark\:bg-\[url\(\'\/assets\/images\/background-dark\.svg\'\)\] {
+    &:where(.dark, .dark *) {
+      background-image: url('/assets/images/background-dark.svg');
     }
   }
   .dark\:bg-\[url\(\'\/assets\/images\/r2d2-dark\.svg\'\)\] {
