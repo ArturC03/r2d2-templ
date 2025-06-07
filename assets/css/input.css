@@ -120,6 +120,30 @@
         font-family: var(--font-comic);
     }
 
+    h1 {
+        @apply text-2xl font-bold mb-6;
+    }
+
+    h2 {
+        @apply text-xl font-bold mb-4;
+    }
+
+    h3 {
+        @apply text-lg font-bold mb-3;
+    }
+
+    h4 {
+        @apply text-base font-bold mb-2;
+    }
+
+    h5 {
+        @apply text-sm font-bold mb-2;
+    }
+
+    h6 {
+        @apply text-xs font-bold mb-2;
+    }
+
     code {
         @apply text-sm bg-muted p-0.5 rounded;
     }

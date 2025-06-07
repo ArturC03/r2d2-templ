@@ -1,0 +1,41 @@
+package modules
+
+import "github.com/ArturC03/r2d2-templ/ui/components/code"
+
+templ Comments() {
+	<div id="comments" class="prose dark:prose-invert max-w-none">
+		<h1>Comments</h1>
+		<h2>Single-line Comments</h2>
+		<p>Use // for single-line comments:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Example {
+    export fn main() {
+        // This is a single-line comment
+        let x = 5;  // This is also a comment
+    }
+}` }
+		}
+		<br/>
+		<h2>Multi-line Comments</h2>
+		<p>Use /* */ for multi-line comments:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Example {
+    export fn main() {
+        /* This is a
+           multi-line
+           comment */
+        let x = 5;
+    }
+}` }
+		}
+		<br/>
+	</div>
+}

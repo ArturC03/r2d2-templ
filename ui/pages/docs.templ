@@ -2,6 +2,7 @@ package pages
 
 import (
 	"github.com/ArturC03/r2d2-templ/ui/components/button"
+	"github.com/ArturC03/r2d2-templ/ui/components/drawer"
 	"github.com/ArturC03/r2d2-templ/ui/components/separator"
 	"github.com/ArturC03/r2d2-templ/ui/layouts"
 	"github.com/ArturC03/r2d2-templ/ui/modules"
@@ -18,6 +19,14 @@ var sections = []Section{
 	{"introduction", modules.Introduction()},
 	{"installation", modules.Installation()},
 	{"hello-world", modules.HelloWorld()},
+	{"comments", modules.Comments()},
+	{"variables", modules.Variables()},
+	{"if-statements", modules.IfStatements()},
+	{"loops", modules.Loops()},
+	{"switch-statements", modules.SwitchStatements()},
+	{"functions", modules.Functions()},
+	{"modules", modules.Modules()},
+	{"interfaces", modules.Interfaces()},
 }
 
 templ Docs() {
@@ -32,12 +41,43 @@ templ Docs() {
 					}
 				</div>
 			</aside>
-			<!-- Menu superior em telas pequenas -->
-			<nav class="md:hidden p-4 pt-20">
-				for _, section := range sections {
-					@SectionNavLink(section.Title)
+			// <!-- Menu superior em telas pequenas -->
+			// <nav class="md:hidden p-4 pt-20">
+			// 	for _, section := range sections {
+			// 		@SectionNavLink(section.Title)
+			// 	}
+			// </nav>
+			@drawer.Drawer() {
+				@drawer.Trigger() {
+					@button.Button(button.Props{
+						Variant: button.VariantOutline,
+						Size:    button.SizeIcon,
+						Href:    "#",
+						Class:   "fixed top-20 right-4 z-10",
+					}) {
+						<i class="fa-solid fa-bars"></i>
+					}
 				}
-			</nav>
+				@drawer.Content(drawer.ContentProps{
+					Position: drawer.PositionLeft,
+				}) {
+					@drawer.Header() {
+						@drawer.Title() {
+							Menu
+						}
+					}
+					<div class="items-start flex flex-col gap-1">
+						for _, section := range sections {
+							@SectionNavLink(section.Title)
+						}
+					</div>
+					@drawer.Footer() {
+						@drawer.Close() {
+							Close
+						}
+					}
+				}
+			}
 			<!-- Conteúdo principal -->
 			<main
 				class="w-full md:w-2/3 p-4 pt-20 mx-auto"

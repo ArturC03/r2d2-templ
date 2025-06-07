@@ -4,22 +4,79 @@ import "github.com/ArturC03/r2d2-templ/ui/components/code"
 import "github.com/ArturC03/r2d2-templ/ui/components/tabs"
 
 templ Installation() {
-	<h1 id="installation" class="font-bold text-2xl">Installation</h1>
-	<p class="mt-2">
-		To install <strong>r2d2</strong>, run the following command in your terminal:
-	</p>
-	<br/>
-	@InstallationTabs()
-	<br/>
-	<p>After running on of the commands above, the r2d2 binary should be available in your <strong>$PATH.</strong></p>
-	<p>You can <strong>verify the installation</strong> by running the following command:</p>
-	<br/>
-	@code.Code(code.Props{
-		Language:       "bash",
-		ShowCopyButton: true,
-	}) {
-		{ `r2d2 version` }
-	}
+	<div id="installation" class="prose dark:prose-invert max-w-none">
+		<h1>Installation</h1>
+
+		<h2>Command Line Interface</h2>
+		<p>R2D2 provides several commands to help you work with your code:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "bash",
+			ShowCopyButton: true,
+		}) {
+			{ `# Show help menu
+r2d2 help
+
+# Run a R2D2 file
+r2d2 run program.r2d2
+
+# Build an executable
+r2d2 build program.r2d2 -o myprogram
+
+# Compile to JavaScript
+r2d2 js program.r2d2 -o program.js` }
+		}
+		<br/>
+
+		<h2>Command Options</h2>
+		<p>Each command has specific options:</p>
+		<ul>
+			<li><code>r2d2 help</code> - Shows the help menu with all available commands and options</li>
+			<li><code>r2d2 run &lt;file.r2d2&gt;</code> - Executes the specified R2D2 file</li>
+			<li><code>r2d2 build &lt;file.r2d2&gt; [-o &lt;binName&gt;]</code> - Compiles the R2D2 file into an executable. The -o option is optional and specifies the output binary name</li>
+			<li><code>r2d2 js &lt;file.r2d2&gt; [-o &lt;file.js&gt;]</code> - Compiles the R2D2 file into JavaScript. The -o option is optional and specifies the output JavaScript file name</li>
+		</ul>
+		<br/>
+
+		<h2>Example Usage</h2>
+		<p>Here's how you might use these commands in practice:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "bash",
+			ShowCopyButton: true,
+		}) {
+			{ `# Run your program
+r2d2 run hello.r2d2
+
+# Build an executable named 'hello'
+r2d2 build hello.r2d2 -o hello
+
+# Compile to JavaScript with default output name
+r2d2 js hello.r2d2
+
+# Compile to JavaScript with custom output name
+r2d2 js hello.r2d2 -o hello.js` }
+		}
+		<br/>
+
+		<h1 id="installation" class="font-bold text-2xl">Installation</h1>
+		<p class="mt-2">
+			To install <strong>r2d2</strong>, run the following command in your terminal:
+		</p>
+		<br/>
+		@InstallationTabs()
+		<br/>
+		<p>After running on of the commands above, the r2d2 binary should be available in your <strong>$PATH.</strong></p>
+		<p>You can <strong>verify the installation</strong> by running the following command:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "bash",
+			ShowCopyButton: true,
+		}) {
+			{ `r2d2 version` }
+		}
+		<br/>
+	</div>
 }
 
 templ InstallationTabs() {

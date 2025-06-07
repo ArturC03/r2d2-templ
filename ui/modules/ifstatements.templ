@@ -1,0 +1,56 @@
+package modules
+
+import "github.com/ArturC03/r2d2-templ/ui/components/code"
+
+templ IfStatements() {
+	<div id="if-statements" class="prose dark:prose-invert max-w-none">
+		<h1>If Statements</h1>
+		<h2>Basic If Statement</h2>
+		<p>The most basic form of conditional execution:</p>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Example {
+    fn checkNumber(x) {
+        if (x > 0) {
+            return "positive";
+        }
+    }
+}` }
+		}
+		<br/>
+		<h2>If-Else Statement</h2>
+		<p>Adding an else clause for alternative execution:</p>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Example {
+    fn checkNumber(x) {
+        if (x > 0) {
+            return "positive";
+        } else {
+            return "negative or zero";
+        }
+    }
+}` }
+		}
+		<br/>
+		<h2>Arrow Syntax</h2>
+		<p>For simple conditions, you can use arrow syntax:</p>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Example {
+    fn checkNumber(x) {
+        if (x > 0) => return "positive";
+        else if (x < 0) => return "negative";
+        else => return "zero";
+    }
+}` }
+		}
+		<br/>
+	</div>
+}

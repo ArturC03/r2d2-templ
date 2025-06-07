@@ -1,0 +1,98 @@
+package modules
+
+import "github.com/ArturC03/r2d2-templ/ui/components/code"
+
+templ Modules() {
+    <div id="modules" class="prose dark:prose-invert max-w-none">
+        <h1>Modules</h1>
+
+        <h2>Module Declaration</h2>
+        <p>Define a module with its methods:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Math {
+    fn add(a, b) {
+        return a + b;
+    }
+
+    fn subtract(a, b) {
+        return a - b;
+    }
+}` }
+        }
+        <br/>
+
+        <h2>Interface Declaration</h2>
+        <p>Define an interface that modules can implement:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `interface Calculator {
+    fn add(a, b);
+    fn subtract(a, b);
+}` }
+        }
+        <br/>
+
+        <h2>Module Implementation</h2>
+        <p>Implement an interface in a module:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module BasicCalculator {
+    fn add(a, b) {
+        return a + b;
+    }
+
+    fn subtract(a, b) {
+        return a - b;
+    }
+}` }
+        }
+        <br/>
+
+        <h2>Using R2D2 Files</h2>
+        <p>Import and use functionality from other R2D2 files. Note that use statements must be at the beginning of the file:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `use "math.r2d2";
+
+module Main {
+    fn run() {
+        let result = Math.add(5, 3);
+        console.log(result); // 8
+    }
+}` }
+        }
+        <br/>
+
+        <h2>Module Exports</h2>
+        <p>Export specific functionality from a module:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Utils {
+    export fn formatDate(date) {
+        return date.toLocaleDateString();
+    }
+
+    fn internalHelper() {
+        // Internal implementation
+    }
+}` }
+        }
+        <br/>
+    </div>
+} 

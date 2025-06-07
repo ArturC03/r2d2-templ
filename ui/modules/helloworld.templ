@@ -14,8 +14,10 @@ templ HelloWorld() {
 	}) {
 		{ `use "std.r2d2";
 
-module main {
-	std.print("Hello World!")
+module helloworld {
+	export fn main() {
+		std.print("Hello World!")
+	}
 }` }
 	}
 	<ul class="list-disc list-inside mt-2">
@@ -35,7 +37,7 @@ module main {
 		{ `r2d2 run <your-file-name>.r2d2` }
 	}
 	<br/>
-	<p>If everything was donne correctly, you should see the following output:</p>
+	<p>If everything was done correctly, you should see the following output:</p>
 	<br/>
 	@code.Code(code.Props{
 		Language:       "bash",

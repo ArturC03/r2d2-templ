@@ -1,0 +1,96 @@
+package modules
+
+import "github.com/ArturC03/r2d2-templ/ui/components/code"
+
+templ Interfaces() {
+    <div id="interfaces" class="prose dark:prose-invert max-w-none">
+        <h1>Interfaces</h1>
+
+        <h2>Interface Declaration</h2>
+        <p>Define an interface with required methods:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `interface Calculator {
+    fn add(a, b);
+    fn subtract(a, b);
+}` }
+        }
+        <br/>
+
+        <h2>Interface Implementation</h2>
+        <p>Implement an interface in a module:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module BasicCalculator {
+    fn add(a, b) {
+        return a + b;
+    }
+
+    fn subtract(a, b) {
+        return a - b;
+    }
+}` }
+        }
+        <br/>
+
+        <h2>Multiple Interfaces</h2>
+        <p>A module can implement multiple interfaces:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `interface Printable {
+    fn print();
+}
+
+interface Serializable {
+    fn serialize();
+}
+
+module Document {
+    fn print() {
+        // Print implementation
+    }
+
+    fn serialize() {
+        // Serialize implementation
+    }
+}` }
+        }
+        <br/>
+
+        <h2>Interface Inheritance</h2>
+        <p>Interfaces can inherit from other interfaces:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `interface Animal {
+    fn makeSound();
+}
+
+interface Dog extends Animal {
+    fn wagTail();
+}
+
+module Labrador {
+    fn makeSound() {
+        return "Woof!";
+    }
+
+    fn wagTail() {
+        // Tail wagging implementation
+    }
+}` }
+        }
+        <br/>
+    </div>
+} 

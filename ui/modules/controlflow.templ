@@ -1,0 +1,119 @@
+package modules
+
+import "github.com/ArturC03/r2d2-templ/ui/components/code"
+
+templ ControlFlow() {
+    <div id="control-flow" class="prose dark:prose-invert max-w-none">
+        <h1>Control Flow</h1>
+
+        <h2>If Statements</h2>
+        <p>Conditional execution with if, else if, and else:</p>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Example {
+    fn checkNumber(x) {
+        if (x > 0) {
+            return "positive";
+        } else if (x < 0) {
+            return "negative";
+        } else {
+            return "zero";
+        }
+    }
+}` }
+        }
+
+        <h2>For Loops</h2>
+        <p>Traditional for loop with initialization, condition, and increment:</p>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Example {
+    fn countToFive() {
+        for (let i = 0; i < 5; i++) {
+            console.log(i);
+        }
+    }
+}` }
+        }
+
+        <h2>While Loops</h2>
+        <p>Execute code while a condition is true:</p>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Example {
+    fn countdown(x) {
+        while (x > 0) {
+            x--;
+        }
+    }
+}` }
+        }
+
+        <h2>Loop Statement</h2>
+        <p>Infinite loop that can be controlled with break and continue:</p>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Example {
+    fn processItems() {
+        loop {
+            if (condition) {
+                break;
+            }
+            if (skipCondition) {
+                continue;
+            }
+            // loop body
+        }
+    }
+}` }
+        }
+
+        <h2>Switch Statement</h2>
+        <p>Use switch statements for multiple conditions:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Example {
+    export pseudo fn main() {
+        var x = 10;
+        switch x {
+            case 10 {
+                std.println("x is 10");
+            }
+            case 20 => std.println("x is 20");
+            
+            default {
+                std.println("x is not 10 or 20");
+            }
+        }
+    }
+}` }
+        }
+
+        <h2>Break and Continue</h2>
+        <p>Control flow within loops:</p>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `while (true) {
+    if (condition) {
+        break;    // Exit the loop
+    }
+    if (skip) {
+        continue; // Skip to next iteration
+    }
+}` }
+        }
+    </div>
+} 

@@ -1,0 +1,89 @@
+package modules
+
+import "github.com/ArturC03/r2d2-templ/ui/components/code"
+
+templ Functions() {
+    <div id="functions" class="prose dark:prose-invert max-w-none">
+        <h1>Functions</h1>
+
+        <h2>Function Declaration</h2>
+        <p>Define a function within a module:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Math {
+    fn add(a, b) {
+        return a + b;
+    }
+}` }
+        }
+        <br/>
+
+        <h2>Function Parameters</h2>
+        <p>Functions can take multiple parameters:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Utils {
+    fn greet(name, greeting = "Hello") {
+        return greeting + ", " + name + "!";
+    }
+}` }
+        }
+        <br/>
+
+        <h2>Return Values</h2>
+        <p>Functions can return values using the return statement:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Math {
+    fn multiply(a, b) {
+        return a * b;
+    }
+
+    fn divide(a, b) {
+        if (b === 0) {
+            return null;
+        }
+        return a / b;
+    }
+}` }
+        }
+        <br/>
+
+        <h2>Arrow Functions</h2>
+        <p>For simple functions, you can use arrow syntax:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Utils {
+    fn double = (x) => x * 2;
+    fn square = (x) => x * x;
+}` }
+        }
+        <br/>
+
+        <h2>Function Expressions</h2>
+        <p>Functions can be assigned to variables:</p>
+        <br/>
+        @code.Code(code.Props{
+            Language:       "js",
+            ShowCopyButton: true,
+        }) {
+            { `module Utils {
+    let operation = (x, y) => x + y;
+    let result = operation(5, 3); // 8
+}` }
+        }
+        <br/>
+    </div>
+} 
