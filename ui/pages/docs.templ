@@ -32,57 +32,10 @@ var sections = []Section{
 templ Docs() {
 	@layouts.BaseLayout() {
 		<div class="flex flex-col md:flex-row min-h-screen">
-			<!-- Menu lateral em telas médias e maiores -->
-			<aside class="fixed hidden md:block md:w-64 p-4 pt-20">
-				<div class="items-start flex flex-col">
-					<h2 class="font-bold mb-2">Getting Started</h2>
-					for _, section := range sections {
-						@SectionNavLink(section.Title)
-					}
-				</div>
-			</aside>
-			// <!-- Menu superior em telas pequenas -->
-			// <nav class="md:hidden p-4 pt-20">
-			// 	for _, section := range sections {
-			// 		@SectionNavLink(section.Title)
-			// 	}
-			// </nav>
-			@drawer.Drawer(drawer.Props{
-				Class: "md:hidden",
-			}) {
-				@drawer.Trigger() {
-					@button.Button(button.Props{
-						Variant: button.VariantOutline,
-						Size:    button.SizeIcon,
-						Href:    "#",
-						Class:   "fixed top-20 right-4 z-10",
-					}) {
-						<i class="fa-solid fa-bars"></i>
-					}
-				}
-				@drawer.Content(drawer.ContentProps{
-					Position: drawer.PositionLeft,
-				}) {
-					@drawer.Header() {
-						@drawer.Title() {
-							Menu
-						}
-					}
-					<div class="items-start flex flex-col gap-1">
-						for _, section := range sections {
-							@SectionNavLink(section.Title)
-						}
-					</div>
-					@drawer.Footer() {
-						@drawer.Close() {
-							Close
-						}
-					}
-				}
-			}
+			@Nav()
 			<!-- Conteúdo principal -->
 			<main
-				class="w-full md:w-2/3 p-4 pt-20 mx-auto"
+				class="w-full md:w-2/3 p-4 pt-20 pt-20 mx-auto"
 			>
 				<div>
 					for _, section := range sections {
@@ -110,5 +63,51 @@ templ SectionNavLink(title string) {
 		Class:   "text-lg",
 	}) {
 		{ strings.Replace(capitalise.First(title),"-"," ",-1) }
+	}
+}
+
+templ Nav() {
+	<!-- Menu lateral em telas médias e maiores -->
+	<aside class="flex-shrink-0 hidden md:block md:w-64 p-4 pt-20">
+		<div class="items-start flex flex-col">
+			<h2 class="font-bold mb-2">Getting Started</h2>
+			for _, section := range sections {
+				@SectionNavLink(section.Title)
+			}
+		</div>
+	</aside>
+	<!--Menu para telas mais pequenas-->
+	@drawer.Drawer(drawer.Props{
+		Class: "md:hidden",
+	}) {
+		@drawer.Trigger() {
+			@button.Button(button.Props{
+				Variant: button.VariantOutline,
+				Size:    button.SizeIcon,
+				Href:    "#",
+				Class:   "fixed top-20 right-4 z-10",
+			}) {
+				<i class="fa-solid fa-bars"></i>
+			}
+		}
+		@drawer.Content(drawer.ContentProps{
+			Position: drawer.PositionLeft,
+		}) {
+			@drawer.Header() {
+				@drawer.Title() {
+					Menu
+				}
+			}
+			<div class="items-start flex flex-col gap-1">
+				for _, section := range sections {
+					@SectionNavLink(section.Title)
+				}
+			</div>
+			@drawer.Footer() {
+				@drawer.Close() {
+					Close
+				}
+			}
+		}
 	}
 }

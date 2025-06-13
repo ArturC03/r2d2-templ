@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/ArturC03/r2d2-templ/assets"
+	"github.com/ArturC03/r2d2-templ/ui/apis"
 	"github.com/ArturC03/r2d2-templ/ui/pages"
 	"github.com/a-h/templ"
 	"github.com/joho/godotenv"
@@ -17,6 +18,8 @@ func main() {
 	SetupAssetsRoutes(mux)
 	mux.Handle("GET /", templ.Handler(pages.Landing()))
 	mux.Handle("GET /docs", templ.Handler(pages.Docs()))
+	mux.Handle("GET /playground", templ.Handler(pages.Playground()))
+	mux.HandleFunc("POST /compile", apis.Compile)
 	fmt.Println("Server is running on http://localhost:8090")
 	http.ListenAndServe(":8090", mux)
 }
@@ -47,4 +50,5 @@ func SetupAssetsRoutes(mux *http.ServeMux) {
 	})
 
 	mux.Handle("GET /assets/", http.StripPrefix("/assets/", assetHandler))
+
 }
