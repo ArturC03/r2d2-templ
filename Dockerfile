@@ -11,28 +11,24 @@ RUN go install github.com/a-h/templ/cmd/templ@latest
 # Generate templ files
 RUN templ generate
 
-# Install build dependencies
-RUN apk add --no-cache gcc musl-dev
-
-# Build the application
-RUN CGO_ENABLED=1 GOOS=linux go build -o main ./main.go
+# Build the application with static linking
+RUN CGO_ENABLED=0 GOOS=linux go build -o main ./main.go
 
 # Deploy-Stage
-FROM debian:bookworm-slim
+FROM alpine:3.20.2
 WORKDIR /app
 
 # Install ca-certificates and Deno
-RUN apt-get update && apt-get install -y \
-    ca-certificates curl unzip && \
-    curl -fsSL https://deno.land/x/install/install.sh | sh && \
-    mv /root/.deno/bin/deno /usr/local/bin/deno && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache ca-certificates curl unzip \
+    && curl -fsSL https://deno.land/x/install/install.sh | sh \
+    && mv /root/.deno/bin/deno /usr/local/bin/deno
 
 # Set environment variable for runtime
 ENV GO_ENV=production
 
-# Copy the binary from the build stage
-COPY --from=build /app/main .
+# Copy the binary from the build stage and ensure it is executable
+COPY --from=build /app/main ./main
+RUN chmod +x ./main
 
 # Expose the port your application runs on
 EXPOSE 8090
