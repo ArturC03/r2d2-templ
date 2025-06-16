@@ -8,7 +8,7 @@ require (
 )
 
 require (
-	github.com/ArturC03/r2d2 v0.1.7
+	github.com/ArturC03/r2d2 v0.2.1
 	github.com/CleanMachine1/capitalise v0.0.0-20211202000658-6c2a2efcfe9e
 	github.com/Oudwins/tailwind-merge-go v0.2.0
 )
@@ -37,4 +37,4 @@ require (
 	golang.org/x/text v0.3.8 // indirect
 )
 
-replace github.com/ArturC03/r2d2 => ../r2d2
+// replace github.com/ArturC03/r2d2 => ../r2d2
