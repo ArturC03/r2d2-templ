@@ -68,7 +68,7 @@ templ SectionNavLink(title string) {
 
 templ Nav() {
 	<!-- Menu lateral em telas médias e maiores -->
-	<aside class="flex-shrink-0 hidden md:block md:w-64 p-4 pt-20">
+	<aside class="fixed hidden md:block md:w-64 p-4 pt-20">
 		<div class="items-start flex flex-col">
 			<h2 class="font-bold mb-2">Getting Started</h2>
 			for _, section := range sections {

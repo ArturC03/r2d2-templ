@@ -129,7 +129,7 @@
     }
 
     h3 {
-        @apply text-lg font-bold mb-3;
+        @apply text-lg font-bold mb-2;
     }
 
     h4 {

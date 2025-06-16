@@ -18,7 +18,10 @@ func main() {
 	SetupAssetsRoutes(mux)
 	mux.Handle("GET /", templ.Handler(pages.Landing()))
 	mux.Handle("GET /docs", templ.Handler(pages.Docs()))
-	mux.Handle("GET /playground", templ.Handler(pages.Playground()))
+	mux.HandleFunc("GET /playground", func(w http.ResponseWriter, r *http.Request) {
+		code := r.URL.Query().Get("code")
+		templ.Handler(pages.Playground(code)).ServeHTTP(w, r)
+	})
 	mux.HandleFunc("POST /compile", apis.Compile)
 	fmt.Println("Server is running on http://localhost:8090")
 	http.ListenAndServe(":8090", mux)

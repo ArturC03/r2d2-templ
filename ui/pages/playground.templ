@@ -1,24 +1,30 @@
 package pages
 
 import (
+	"encoding/json"
 	"github.com/ArturC03/r2d2-templ/ui/components/button"
 	"github.com/ArturC03/r2d2-templ/ui/components/icon"
 	"github.com/ArturC03/r2d2-templ/ui/components/textarea"
 	"github.com/ArturC03/r2d2-templ/ui/layouts"
 )
 
-templ Playground() {
+func JSONString(s string) string {
+	b, _ := json.Marshal(s)
+	return string(b)
+}
+
+templ Playground(initialCode string) {
 	@layouts.BaseLayout() {
 		<div
-			class="mt-20 h-full w-full mx-auto px-4"
-			x-data="{ code: '', result: '' }"
+			class="mt-20 w-full max-w-7xl mx-auto px-4"
+			x-data={ "{ code: " + JSONString(initialCode) + ", result: '' }" }
 			x-init="initPlayground($el)"
 		>
-			<div class="flex justify-between">
-				<h1 class="text-2xl font-bold mb-6">Playground</h1>
+			<div class="flex sm:flex-row justify-between sm:items-center gap-4 mb-6">
+				<h1 class="text-2xl font-bold">Playground</h1>
 				<div>
 					@button.Button(button.Props{
-						Class: "flex gap-2 items-center",
+						Class: "flex gap-2 items-center w-full sm:w-auto justify-center",
 						Attributes: templ.Attributes{
 							"@click": "compile()",
 						},
@@ -28,19 +34,29 @@ templ Playground() {
 					}
 				</div>
 			</div>
-			<div class="flex flex-col gap-4 md:flex-row">
-				@textarea.Textarea(textarea.Props{
-					Placeholder: "Type your code here...",
-					ID:          "editor",
-					XModel:      "code",
-					Class:       "h-96",
-				})
-				@textarea.Textarea(textarea.Props{
-					Placeholder: "See the result here...",
-					XModel:      "result",
-					ReadOnly:    true,
-					Class:       "h-96",
-				})
+			<!-- Responsive grid layout -->
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 h-[calc(100vh-200px)] min-h-[600px]">
+				<!-- Code Editor -->
+				<div class="flex flex-col">
+					<label class="text-sm font-medium mb-2">Code Editor</label>
+					@textarea.Textarea(textarea.Props{
+						Placeholder: "Type your code here...",
+						ID:          "editor",
+						XModel:      "code",
+						Value:       initialCode,
+						Class:       "flex-1 min-h-[300px] lg:h-full resize-none",
+					})
+				</div>
+				<!-- Result Output -->
+				<div class="flex flex-col">
+					<label class="text-sm font-medium mb-2">Output</label>
+					@textarea.Textarea(textarea.Props{
+						Placeholder: "See the result here...",
+						XModel:      "result",
+						ReadOnly:    true,
+						Class:       "flex-1 min-h-[300px] lg:h-full resize-none",
+					})
+				</div>
 			</div>
 		</div>
 		<script>
@@ -53,27 +69,23 @@ templ Playground() {
 						body: JSON.stringify({ code: this.code }),
 					});
 					const data = await response.json();
-
 					if (data.success) {
 						this.result = '';
 						const logs = [];
-
 						const originalLog = console.log;
 						console.log = (...args) => {
 							logs.push(args.join(' '));
 							originalLog(...args);
 						};
-
 						try {
 							eval(data.result);
 						} catch (e) {
 							logs.push('Erro ao executar código: ' + e.message);
 						}
-
 						console.log = originalLog;
 						this.result = logs.join('\n');
 					} else {
-						this.result = 'Compilação falhou:\n' + data.error.map(e => `Linha ${e.Line}: ${e.Message}`).join('\n');
+						this.result = 'Compiling failed:\n' + data.error.map(e => `Linha ${e.Line}: ${e.Message}`).join('\n');
 					}
 				}
 			}
