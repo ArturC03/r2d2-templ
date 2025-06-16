@@ -85,7 +85,7 @@ templ Playground(initialCode string) {
 						console.log = originalLog;
 						this.result = logs.join('\n');
 					} else {
-						this.result = 'Compiling failed:\n' + data.error.map(e => `Linha ${e.Line}: ${e.Message}`).join('\n');
+						this.result = 'Compiling failed:\n' + data.error.map(e => `Line${e.Line}: ${e.Message}`).join('\n');
 					}
 				}
 			}
