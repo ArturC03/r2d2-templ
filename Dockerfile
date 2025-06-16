@@ -18,13 +18,15 @@ RUN apk add --no-cache gcc musl-dev
 RUN CGO_ENABLED=1 GOOS=linux go build -o main ./main.go
 
 # Deploy-Stage
-FROM alpine:3.20.2
+FROM debian:bookworm-slim
 WORKDIR /app
 
 # Install ca-certificates and Deno
-RUN apk add --no-cache ca-certificates curl unzip \
-    && curl -fsSL https://deno.land/x/install/install.sh | sh \
-    && mv /root/.deno/bin/deno /usr/local/bin/deno
+RUN apt-get update && apt-get install -y \
+    ca-certificates curl unzip && \
+    curl -fsSL https://deno.land/x/install/install.sh | sh && \
+    mv /root/.deno/bin/deno /usr/local/bin/deno && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set environment variable for runtime
 ENV GO_ENV=production
