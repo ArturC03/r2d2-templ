@@ -21,8 +21,10 @@ RUN CGO_ENABLED=1 GOOS=linux go build -o main ./main.go
 FROM alpine:3.20.2
 WORKDIR /app
 
-# Install ca-certificates
-RUN apk add --no-cache ca-certificates
+# Install ca-certificates and Deno
+RUN apk add --no-cache ca-certificates curl unzip \
+    && curl -fsSL https://deno.land/x/install/install.sh | sh \
+    && mv /root/.deno/bin/deno /usr/local/bin/deno
 
 # Set environment variable for runtime
 ENV GO_ENV=production
