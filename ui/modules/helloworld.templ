@@ -12,18 +12,15 @@ templ HelloWorld() {
 		Language:       "js",
 		ShowCopyButton: true,
 	}) {
-		{ `use "std.r2d2";
-
-module helloworld {
+		{ `module helloworld {
 	export fn main() {
-		std.print("Hello World!")
+		console.log("Hello World!")
 	}
 }` }
 	}
 	<ul class="list-disc list-inside mt-2">
-		<li>The <code>use</code> keyword is used to import modules from the standard library.</li>
-		<li>The <code>std.print</code> function is used to print text to the terminal.</li>
-		<li>The <code>main</code> module is the entry point of the program.</li>
+		<li>The <code>console.log</code> function is used to print text to the terminal.</li>
+		<li>The <code>main</code> function is the entry point of the program.</li>
 	</ul>
 	<br/>
 	<p>
@@ -41,7 +38,7 @@ module helloworld {
 	<br/>
 	@code.Code(code.Props{
 		Language:       "bash",
-		ShowCopyButton: true,
+		ShowCopyButton: false,
 	}) {
 		{ `Hello World!` }
 	}

@@ -3,17 +3,16 @@ package modules
 import "github.com/ArturC03/r2d2-templ/ui/components/code"
 
 templ Variables() {
-    <div id="variables" class="prose dark:prose-invert max-w-none">
-        <h1>Variables</h1>
-
-        <h2>Variable Declaration</h2>
-        <p>Declare variables using either the var or let keyword:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Example {
+	<div id="variables" class="prose dark:prose-invert max-w-none">
+		<h1>Variables</h1>
+		<h2>Variable Declaration</h2>
+		<p>Declare variables using either the var or let keyword:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Example {
     export fn main() {
         var name = "R2D2";
         let age = 42;
@@ -21,60 +20,37 @@ templ Variables() {
         let count = 0;
     }
 }` }
-        }
-        <br/>
-
-        <h2>Constants</h2>
-        <p>Declare constants using the const keyword:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Example {
+		}
+		<br/>
+		<h2>Constants</h2>
+		<p>Declare constants using the const keyword:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Example {
     export fn main() {
         const PI = 3.14159;
         const MAX_SIZE = 100;
     }
 }` }
-        }
-        <br/>
-
-        <h2>Variable Assignment</h2>
-        <p>Assign values to variables:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Example {
+		}
+		<br/>
+		<h2>Variable Assignment</h2>
+		<p>Assign values to variables:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Example {
     export fn main() {
         var count = 0;
         count = count + 1;
         count += 1;  // Shorthand
     }
 }` }
-        }
-        <br/>
-
-        <h2>Variable Scope</h2>
-        <p>Variables are scoped to their containing block:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Example {
-    export fn main() {
-        var x = 10;
-        {
-            let x = 20;  // Different variable
-            console.log(x);  // 20
-        }
-        console.log(x);  // 10
-    }
-}` }
-        }
-        <br/>
-    </div>
-} 
+		}
+	</div>
+}

@@ -3,75 +3,72 @@ package modules
 import "github.com/ArturC03/r2d2-templ/ui/components/code"
 
 templ Loops() {
-    <div id="loops" class="prose dark:prose-invert max-w-none">
-        <h1>Loops</h1>
-
-        <h2>For Loop</h2>
-        <p>The traditional for loop with initialization, condition, and increment:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Loops {
+	<div id="loops" class="prose dark:prose-invert max-w-none">
+		<h1>Loops</h1>
+		<h2>For Loop</h2>
+		<p>The traditional for loop with initialization, condition, and increment:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Loops {
     fn countToFive() {
         for (let i = 0; i < 5; i++) {
             console.log(i);
         }
     }
 }` }
-        }
-        <br/>
-
-        <h2>While Loop</h2>
-        <p>Execute code while a condition is true:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Loops {
+		}
+		<br/>
+		<h2>While Loop</h2>
+		<p>Execute code while a condition is true:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Loops {
     fn countdown(x) {
-        while (x > 0) {
+        while x > 0 {
             x--;
             console.log(x);
         }
     }
 }` }
-        }
-        <br/>
-
-        <h2>Loop Statement</h2>
-        <p>Infinite loop that can be controlled with break and continue:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Loops {
+		}
+		<br/>
+		<h2>Loop Statement</h2>
+		<p>Infinite loop</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Loops {
     fn processItems() {
         loop {
-            if (condition) {
+            if condition {
                 break;
             }
-            if (skipCondition) {
+
+            if skipCondition {
                 continue;
             }
             // loop body
         }
     }
 }` }
-        }
-        <br/>
-
-        <h2>Break Statement</h2>
-        <p>Exit a loop prematurely:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Loops {
+		}
+		<br/>
+		<h2>Break Statement</h2>
+		<p>Exit a loop prematurely:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Loops {
     fn findItem() {
         while (true) {
             if (found) {
@@ -81,17 +78,16 @@ templ Loops() {
         }
     }
 }` }
-        }
-        <br/>
-
-        <h2>Continue Statement</h2>
-        <p>Skip to the next iteration of a loop:</p>
-        <br/>
-        @code.Code(code.Props{
-            Language:       "js",
-            ShowCopyButton: true,
-        }) {
-            { `module Loops {
+		}
+		<br/>
+		<h2>Continue Statement</h2>
+		<p>Skip to the next iteration of a loop:</p>
+		<br/>
+		@code.Code(code.Props{
+			Language:       "js",
+			ShowCopyButton: true,
+		}) {
+			{ `module Loops {
     fn printOddNumbers() {
         for (let i = 0; i < 10; i++) {
             if (i % 2 === 0) {
@@ -101,7 +97,6 @@ templ Loops() {
         }
     }
 }` }
-        }
-        <br/>
-    </div>
-} 
+		}
+	</div>
+}
